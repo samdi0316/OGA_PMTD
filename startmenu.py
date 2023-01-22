@@ -27,29 +27,39 @@ def main(stdscr):
 
     ##첫화면:실행 모드 선택
     ##첫화면:화면분할
-    RIGHT_WINDOW=curses.newwin(1,coulmns//2,row-2,coulmns//2-1)
-    LEFT_WINDOW=curses.newwin(1,1,coulmns//2-2)
+    RIGHT_WINDOW=curses.newwin(row-2,coulmns//2-1,1,coulmns//2)
+    LEFT_WINDOW=curses.newwin(row-2,coulmns//2-2,1,1)
 
     ##첫화면:실행모드 선택 메뉴
-    LEFT_WINDOW.clear()
-    LEFT_WINDOW.addstr(row//2-2,1,"Ⅰ:OPERATE SYS")
-    LEFT_WINDOW.addstr(row//2,1,"Ⅱ:SYS SETTING")
-    LEFT_WINDOW.addstr(row//2+2,1,"Ⅲ:SYS OFF")
-    LEFT_WINDOW.refresh()
+    RIGHT_WINDOW.clear()
+    RIGHT_WINDOW.addstr(row//2-2,1,"Ⅰ : OPERATE SYS",MAIN_COLOR)
+    RIGHT_WINDOW.addstr(row//2,1,"Ⅱ : SYS SETTING",MAIN_COLOR)
+    RIGHT_WINDOW.addstr(row//2+2,1,"Ⅲ : SYS OFF",MAIN_COLOR)
+    RIGHT_WINDOW.refresh()
+    time.sleep(3)
 
     ##첫화면:버튼입력에 따라 실행모드 선택
-    while True:
-        BUTTON_input=stdscr.getch()
-        if BUTTON_input==1:
-            stdscr.clear()
+##    MOD = 0 
+##    while True:
+##        BUTTON_input=stdscr.getch()
+##        if BUTTON_input==1:
+##            stdscr.clear()
+##            MOD=1
+##            exit
+##        if BUTTON_input==2:
+##            stdscr.clear()
+##        if BUTTON_input==2:
+##            stdscr.clear()
+        
+
             
 
-    stdscr.clear()
-    stdscr.addstr(row-2,0,"Ⅰ    Ⅱ   Ⅲ   Ⅳ   Ⅳ   Ⅵ".center(coulmns),WB_color)
-    stdscr.addstr(row-3,0,"SELET MODE".center(coulmns))
-    stdscr.refresh()
+##    stdscr.clear()
+##    stdscr.addstr(row-2,0,"Ⅰ    Ⅱ   Ⅲ   Ⅳ   Ⅳ   Ⅵ".center(coulmns),MAIN_COLOR_REVERSE)
+##    stdscr.addstr(row-3,0,"SELET MODE".center(coulmns))
+##    stdscr.refresh()
     
-    stdscr.getch()
+##    stdscr.getch()
 
 
 wrapper(main)
