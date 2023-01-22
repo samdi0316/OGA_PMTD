@@ -36,16 +36,18 @@ def main(stdscr):
     RIGHT_WINDOW.addstr(row//2,1,"Ⅱ : SYS SETTING",MAIN_COLOR)
     RIGHT_WINDOW.addstr(row//2+2,1,"Ⅲ : SYS OFF",MAIN_COLOR)
     RIGHT_WINDOW.refresh()
+    
     time.sleep(3)
+    BUTTON_input=stdscr.getch()
 
     ##첫화면:버튼입력에 따라 실행모드 선택
-##    MOD = 0 
+##    MOD = int(0) 
 ##    while True:
-##        BUTTON_input=stdscr.getch()
+##        
 ##        if BUTTON_input==1:
 ##            stdscr.clear()
-##            MOD=1
-##            exit
+##            MOD = int(1)
+##            break
 ##        if BUTTON_input==2:
 ##            stdscr.clear()
 ##        if BUTTON_input==2:
