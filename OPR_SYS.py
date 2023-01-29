@@ -42,12 +42,14 @@ def main(stdscr):
     BOTTOM_WINDOW.refresh()
 
     ##첫화면:미리 설정된 기본 설정 확인
-    USER = str(getpass.getuser())
-    DATE = str(time.strftime('%Y-%m-%d'))
+    USER = getpass.getuser()
+    DATE = time.strftime('%Y-%m-%d')
 
 
     ##첫화면:미리 설정된 기본 설정 표시
     TOP_WINDOW.clear()
+    TOP_WINDOW.addstr(0,0,USER.ljust(coulmns-1),MAIN_COLOR_REVERSE)
+    TOP_WINDOW.addstr(0,coulmns-10,DATE,MAIN_COLOR_REVERSE)
 ##문제! : SyntaxError : invalid syntax = 어디서 발생하는지 모름ㅋ
 ##    TOP_WINDOW.addstr(0,0,f"{USER}".ljust(coulmns-1).encode('utf-8'),MAIN_COLOR_REVERSE)
 ##    TOP_WINDOW.addstr(0,coulmns-len(str(DATE))-1,f"{DATE}".encode('utf-8'),MAIN_COLOR_REVERSE)
