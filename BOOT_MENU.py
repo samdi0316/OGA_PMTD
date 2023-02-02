@@ -52,7 +52,7 @@ def main(stdscr):
         MOD=int(BOTTOM_WINDOW.getch())-48    
         if MOD==1:
             stdscr.clear()
-            os.system("python3.6 OPR_SYS.py")
+            os.system("python3.6 SYS_STR.py")
             exit
         elif MOD==2:
             stdscr.clear()
@@ -63,9 +63,6 @@ def main(stdscr):
             os.system("shutdown -P -t now")
             exit
     time.sleep(100)
-##    stdscr.addstr(row//2,coulmns//2,f"{MOD}")
-##    stdscr.refresh()
-##    stdscr.getch()
 
 
 wrapper(main)
