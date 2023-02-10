@@ -43,14 +43,17 @@ def main(stdscr):
     VERS,UPDATE = INFO_FILE.read().split("\n")
     INFO_FILE.close()
 
+    SYS_INFO = os.uname()
+
     ##첫화면:미리 설정된 기본 설정 표시
     LEFT_WINDOW.clear()
-##    LEFT_WINDOW.addstr()
+    LEFT_WINDOW.addstr(row//2-1,coulmns//2-21,f" {VERS}",MAIN_COLOR_REVERSE)
+    LEFT_WINDOW.addstr(row//2+1,coulmns//2-21,f" {UPDATE}",MAIN_COLOR_REVERSE)
     LEFT_WINDOW.refresh()
 
     RIGHT_WINDOW.clear()
-    RIGHT_WINDOW.addstr(row//2-1,1,f"{VERS}")
-    RIGHT_WINDOW.addstr(row//2+1,1,f"{UPDATE}")
+    RIGHT_WINDOW.addstr(row//2-1,1,f"{SYS_INFO[4]}")
+    RIGHT_WINDOW.addstr(row//2+1,1,f"{SYS_INFO[3]}")
     RIGHT_WINDOW.refresh()
 
 
