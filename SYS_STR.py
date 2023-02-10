@@ -35,24 +35,36 @@ def main(stdscr):
     LEFT_WINDOW=curses.newwin(row-3,coulmns//2-2,1,1)
     BOTTOM_WINDOW=curses.newwin(2,coulmns,row-2,0)
 
+    ##첫화면:미리 설정된 기본 설정 확인
+    USER = getpass.getuser()
+    DATE = str(time.strftime('%Y-%m-%d'))
+    
+    INFO_FILE = open('info.txt')
+    VERS,UPDATE = INFO_FILE.read().split("\n")
+    INFO_FILE.close()
+
+    ##첫화면:미리 설정된 기본 설정 표시
+    LEFT_WINDOW.clear()
+##    LEFT_WINDOW.addstr()
+    LEFT_WINDOW.refresh()
+
+    RIGHT_WINDOW.clear()
+    RIGHT_WINDOW.addstr(row//2-1,1,f"{VERS}")
+    RIGHT_WINDOW.addstr(row//2+1,1,f"{UPDATE}")
+    RIGHT_WINDOW.refresh()
+
+
+    ##첫화면:상단바 표시
+    TOP_WINDOW.clear()
+    TOP_WINDOW.addstr(0,0,f"{USER}".ljust(coulmns-1),MAIN_COLOR_REVERSE)
+    TOP_WINDOW.addstr(0,coulmns-len(str(DATE))-1,f"{DATE}",MAIN_COLOR_REVERSE)
+    TOP_WINDOW.refresh()
+
     ##첫화면:하단바 표시
     BOTTOM_WINDOW.clear()
     BOTTOM_WINDOW.addstr(0,0,"CHECK SETTING".center(coulmns-1))
     BOTTOM_WINDOW.addstr(1,0," ".center(coulmns-1),MAIN_COLOR_REVERSE)
     BOTTOM_WINDOW.refresh()
-
-    ##첫화면:미리 설정된 기본 설정 확인
-    USER = getpass.getuser()
-    DATE = str(time.strftime('%Y-%m-%d'))
-    
-    open("info.txt",'r')
-    VERS = 
-    
-    ##첫화면:미리 설정된 기본 설정 표시
-    TOP_WINDOW.clear()
-    TOP_WINDOW.addstr(0,0,f"{USER}".ljust(coulmns-1),MAIN_COLOR_REVERSE)
-    TOP_WINDOW.addstr(0,coulmns-len(str(DATE))-1,f"{DATE}",MAIN_COLOR_REVERSE)
-    TOP_WINDOW.refresh()
 
     ##
 
