@@ -38,24 +38,26 @@ def main(stdscr):
     ##첫화면:미리 설정된 기본 설정 확인
     USER = getpass.getuser()
     DATE = str(time.strftime('%Y-%m-%d'))
-    
+    RAW_INFO = os.uname()
+    ARC_INFO = RAW_INFO[4]
+    OS_INFO = RAW_INFO[3].split(" ")   
+
     INFO_FILE = open('info.txt')
     VERS,UPDATE = INFO_FILE.read().split("\n")
     INFO_FILE.close()
 
-    SYS_INFO = os.uname()
+    ##첫화면:운용전 기기상태 검사 --- 기기 개조 후 제작
 
     ##첫화면:미리 설정된 기본 설정 표시
     LEFT_WINDOW.clear()
-    LEFT_WINDOW.addstr(row//2-1,coulmns//2-21,f" {VERS}",MAIN_COLOR_REVERSE)
-    LEFT_WINDOW.addstr(row//2+1,coulmns//2-21,f" {UPDATE}",MAIN_COLOR_REVERSE)
+    LEFT_WINDOW.addstr(row//2-2,coulmns//2-21,f" {VERS}")
+    LEFT_WINDOW.addstr(row//2,coulmns//2-21,f" {UPDATE}")
+    LEFT_WINDOW.addstr(row//2+2,coulmns//2-20,f"{ARC_INFO}")
+    LEFT_WINDOW.addstr(row//2+2,coulmns//2-14,f"{OS_INFO[0]}")
     LEFT_WINDOW.refresh()
 
     RIGHT_WINDOW.clear()
-    RIGHT_WINDOW.addstr(row//2-1,1,f"{SYS_INFO[4]}")
-    RIGHT_WINDOW.addstr(row//2+1,1,f"{SYS_INFO[3]}")
     RIGHT_WINDOW.refresh()
-
 
     ##첫화면:상단바 표시
     TOP_WINDOW.clear()
@@ -66,10 +68,21 @@ def main(stdscr):
     ##첫화면:하단바 표시
     BOTTOM_WINDOW.clear()
     BOTTOM_WINDOW.addstr(0,0,"CHECK SETTING".center(coulmns-1))
-    BOTTOM_WINDOW.addstr(1,0," ".center(coulmns-1),MAIN_COLOR_REVERSE)
+    BOTTOM_WINDOW.addstr(1,0,"Ⅰ    Ⅱ   Ⅲ   Ⅳ   YES   NO".center(coulmns-1),MAIN_COLOR_REVERSE)
     BOTTOM_WINDOW.refresh()
 
-    ##
+    ##첫화면:입력에 따른 화면 전환
+    while True:   
+        MOD=int(BOTTOM_WINDOW.getch())-48    
+        if MOD==5:
+            exit
+        elif MOD==6:
+            stdscr.clear()
+            os.system("python3.6 BOOT_MENU.py")
+            exit
+    
+
+##두번째화면:
 
 
 
