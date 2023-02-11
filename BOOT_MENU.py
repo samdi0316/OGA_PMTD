@@ -26,21 +26,33 @@ def main(stdscr):
         for dirpath, dirname, finding_name in os.walk(path):
             if name in finding_name:
                 return os.path.join(dirpath, name)
-
-
-##첫화면:실행 모드 선택
-    ##첫화면:화면분할 
+    ##설정준비:화면분할 
     RIGHT_WINDOW=curses.newwin(row-3,coulmns//2-1,1,coulmns//2)
     LEFT_WINDOW=curses.newwin(row-3,coulmns//2-2,1,1)
     BOTTOM_WINDOW=curses.newwin(2,coulmns,row-2,0)
 
+##첫화면:실행 모드 선택
     ##첫화면:하단바 표시
     BOTTOM_WINDOW.clear()
     BOTTOM_WINDOW.addstr(0,0,"SELET MODE".center(coulmns-1))
     BOTTOM_WINDOW.addstr(1,0,"Ⅰ    Ⅱ   Ⅲ   Ⅳ   Ⅳ   Ⅵ".center(coulmns-1),MAIN_COLOR_REVERSE)
     BOTTOM_WINDOW.refresh()
 
-    ##첫화면:실행모드 선택 메뉴 표시
+    ##첫화면:로고표시
+    LEFT_WINDOW.clear()
+    LEFT_WINDOW.addstr(row//2-6,coulmns//2-25,"⠀⠀⠀⠀⠀⠀⢀⡠⠔⠊⡟⠲⢤⣀⠀⠀⠀⠀⠀⠀⠀")
+    LEFT_WINDOW.addstr(row//2-5,coulmns//2-25,"⠀⠀⢀⣠⣄⣀⢸⠀⠀⠀⡇⠀⠀⢸⠀⣀⣄⣀⠀⠀⠀")
+    LEFT_WINDOW.addstr(row//2-4,coulmns//2-25,"⡴⠚⠁⢸⣿⣿⣿⠀⠀⠀⡇⠀⠀⢸⡿⠋⠀⠈⠙⣢⠄")
+    LEFT_WINDOW.addstr(row//2-3,coulmns//2-25,"⡇⠀⠀⢸⡿⠟⠋⠀⠀⠀⡇⠀⠀⠈⠀⠀⠀⢀⡼⠁⠀")
+    LEFT_WINDOW.addstr(row//2-2,coulmns//2-25,"⡇⠀⠀⠈⠀⠀⣀⠀⠀⠀⡇⠀⠀⢰⠀⠀⠠⡎⠀⠀⠀")
+    LEFT_WINDOW.addstr(row//2-1,coulmns//2-25,"⡇⠀⠀⢠⣶⣿⣿⠀⠀⠀⡇⠀⠀⢸⣧⠀⠀⢳⡀⠀⠀")
+    LEFT_WINDOW.addstr(row//2-0,coulmns//2-25,"⡇⠀⠀⢸⣿⣿⣿⣀⠤⠖⠓⠦⣀⣸⣿⣆⠀⠀⢳⠀⠀")
+    LEFT_WINDOW.addstr(row//2+1,coulmns//2-25,"⡇⠀⠀⢸⣿⣿⣿⣤⣀⠀⠀⢀⣤⣿⣿⣿⣆⠀⠀⢧⠀")
+    LEFT_WINDOW.addstr(row//2+2,coulmns//2-25,"⡧⠔⠋⠁⠈⠛⠻⣿⠀⠉⠋⠀⢻⣿⠿⠋⠁⠉⠓⠬⣇")
+    LEFT_WINDOW.addstr(row//2+3,coulmns//2-25,"⠉⠐⠦⣀⡠⠔⠊⠁⠀⠀⠀⠀⠀⠉⠒⠦⣄⡠⠔⠊⠉")    
+    LEFT_WINDOW.refresh()
+
+    ##첫화면:실행모드 선택 메뉴 표시   
     RIGHT_WINDOW.clear()
     RIGHT_WINDOW.addstr(row//2-2,1,"Ⅰ : OPERATE SYS",MAIN_COLOR)
     RIGHT_WINDOW.addstr(row//2,1,"Ⅱ : SYS SETTING",MAIN_COLOR)
@@ -62,7 +74,6 @@ def main(stdscr):
             stdscr.clear()
             os.system("shutdown -P -t now")
             exit
-    time.sleep(100)
 
 
 wrapper(main)
