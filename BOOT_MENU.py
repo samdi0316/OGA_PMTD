@@ -26,6 +26,7 @@ def main(stdscr):
         for dirpath, dirname, finding_name in os.walk(path):
             if name in finding_name:
                 return os.path.join(dirpath, name)
+
     ##설정준비:화면분할 
     RIGHT_WINDOW=curses.newwin(row-3,coulmns//2-1,1,coulmns//2)
     LEFT_WINDOW=curses.newwin(row-3,coulmns//2-2,1,1)
@@ -72,7 +73,7 @@ def main(stdscr):
             break
         elif MOD==3:
             stdscr.clear()
-            os.system("shutdown -P -t now")
+            os.system("sudo shutdown -r -time now")
             break
 
 
