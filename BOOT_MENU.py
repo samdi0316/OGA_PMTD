@@ -65,15 +65,15 @@ def main(stdscr):
         if MOD==1:
             stdscr.clear()
             os.system("python3.6 SYS_STR.py")
-            exit
+            break
         elif MOD==2:
             stdscr.clear()
             os.system("python3.6 SYS_SET.py")
-            exit
+            break
         elif MOD==3:
             stdscr.clear()
             os.system("shutdown -P -t now")
-            exit
+            break
 
 
 wrapper(main)
