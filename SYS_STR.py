@@ -102,17 +102,26 @@ def main(stdscr):
     ##두번쨰화면:모듈 로고 표시
 
     ##두번쨰화면:하단바 표시
+    BOTTOM_WINDOW.clear()
+    BOTTOM_WINDOW.addstr(0,0,"ADDON SETTING".center(coulmns-1))
+    BOTTOM_WINDOW.addstr(1,0,"CHANGE       GO TO MAIN  BACK".center(coulmns-1),MAIN_COLOR_REVERSE)
+    BOTTOM_WINDOW.refresh()
 
-    
-    
-
-
-
-
-
-
-
-
+    ##두번째화면:입력에 따른 화면 전환
+    while True:   
+        MOD=int(BOTTOM_WINDOW.getch())-48    
+        if MOD==5:
+            stdscr.clear()
+##            os.system("python3.6 MAIN_MENU.py")
+            break
+        elif MOD==1:
+            stdscr.clear()
+            os.system("python3.6 CHG_ADD.py")
+            break
+        elif MOD==6:
+            stdscr.clear()
+            os.system("python3.6 SYS_STR.py")
+            break
 
 
     LEFT_WINDOW.clear()
