@@ -112,7 +112,7 @@ def main(stdscr):
         MOD=int(BOTTOM_WINDOW.getch())-48    
         if MOD==5:
             stdscr.clear()
-##            os.system("python3.6 MAIN_MENU.py")
+            os.system("python3.6 MAIN_MENU.py")
             break
         elif MOD==1:
             stdscr.clear()
@@ -128,7 +128,7 @@ def main(stdscr):
     RIGHT_WINDOW.clear()
     LEFT_WINDOW.refresh()
     RIGHT_WINDOW.refresh()
-    RIGHT_WINDOW.getch()
+
 
 
 wrapper(main)
