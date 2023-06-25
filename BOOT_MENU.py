@@ -65,11 +65,11 @@ def main(stdscr):
         MOD=int(BOTTOM_WINDOW.getch())-48    
         if MOD==1:
             stdscr.clear()
-            os.system("python3.6 SYS_STR.py")
+            os.system("python SYS_STR.py")
             break
         elif MOD==2:
             stdscr.clear()
-            os.system("python3.6 SYS_SET.py")
+            os.system("python SYS_SET.py")
             break
         elif MOD==3:
             stdscr.clear()

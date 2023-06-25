@@ -88,10 +88,10 @@ def main(stdscr):
             break
         elif MOD==1:
             stdscr.clear()
-            os.system("python3.6 CHG_SET.py")
+            os.system("python CHG_SET.py")
         elif MOD==6:
             stdscr.clear()
-            os.system("python3.6 BOOT_MENU.py")
+            os.system("python BOOT_MENU.py")
             exit
 
 ##두번쨰화면:현재 기기 검사 -- 모듈 및 실 기기 제작 후 추가 예정
@@ -112,15 +112,15 @@ def main(stdscr):
         MOD=int(BOTTOM_WINDOW.getch())-48    
         if MOD==5:
             stdscr.clear()
-            os.system("python3.6 MAIN_MENU.py")
+            os.system("python MAIN_MENU.py")
             break
         elif MOD==1:
             stdscr.clear()
-            os.system("python3.6 CHG_ADD.py")
+            os.system("python CHG_ADD.py")
             break
         elif MOD==6:
             stdscr.clear()
-            os.system("python3.6 SYS_STR.py")
+            os.system("python SYS_STR.py")
             break
 
 
