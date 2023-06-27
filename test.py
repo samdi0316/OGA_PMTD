@@ -4,9 +4,10 @@ menu = ['Home', 'Play', 'Scoreboard', 'Exit']
 y_or_n = ['yes', 'no']
 
 
-def print_menu(stdscr, selected_row_idx):
-    stdscr.clear()
+def print_vertical_menu(stdscr, selected_row_idx):
+    
     h, w = stdscr.getmaxyx()
+    
     for idx, row in enumerate(menu):
     	x = w//2 - len(row)//2
     	y = h//2 - len(menu)//2 + idx
@@ -18,7 +19,7 @@ def print_menu(stdscr, selected_row_idx):
     		stdscr.addstr(y, x, row)
     stdscr.refresh()
 
-def print_x_menu(stdscr, selected_cul_idx):
+def print_horizontal_menu(stdscr, selected_cul_idx):
     al = 0
     ex = 0
     h, w = stdscr.getmaxyx()
@@ -44,7 +45,7 @@ def print_x_menu(stdscr, selected_cul_idx):
 
 
 def print_center(stdscr, text):
-    stdscr.clear()
+    
     h, w = stdscr.getmaxyx()
     x = w//2 - len(text)//2
     y = h//2
@@ -63,7 +64,7 @@ def main(stdscr):
     current_cul = 0 
 
     # print the menu
-    print_menu(stdscr, current_row)
+    print_vertical_menu(stdscr, current_row)
 
     while 1:
     	key = stdscr.getch()
@@ -79,11 +80,11 @@ def main(stdscr):
     		if current_row == len(menu)-1:
     			break
 
-    	print_menu(stdscr, current_row)
+    	print_vertical_menu(stdscr, current_row)
 	
     stdscr.clear()
     print_center(stdscr,"Are you sure you want to exit?")
-    print_x_menu(stdscr,current_cul)
+    print_horizontal_menu(stdscr,current_cul)
 
     while 1:
     	key = stdscr.getch()
@@ -100,6 +101,6 @@ def main(stdscr):
     			break
 
     	print_center(stdscr,"Are you sure you want to exit?")
-    	print_x_menu(stdscr, current_cul)
+    	print_horizontal_menu(stdscr, current_cul)
 
 curses.wrapper(main)
