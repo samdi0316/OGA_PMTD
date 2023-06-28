@@ -10,26 +10,26 @@ import getpass
 
 ##함수준비:자주 사용하는 함수들을 미리 정의
 ##함수준비:세로로 메뉴를 만드는 함수
-def print_vertical_menu(stdscr, menu, selected_row_idx):
+def print_vertical_menu(SEL_WIN, menu, selected_row_idx):
 	
-	h, w = stdscr.getmaxyx()
+	h, w = SEL_WIN.getmaxyx()
 	
 	for idx, row in enumerate(menu):
 		x = w//2 - len(row)//2
 		y = h//2 - len(menu)//2 + idx
 		if idx == selected_row_idx:
-			stdscr.attron(curses.color_pair(1))
-			stdscr.addstr(y, x, row)
-			stdscr.attroff(curses.color_pair(1))
+			SEL_WIN.attron(curses.color_pair(1))
+			SEL_WIN.addstr(y, x, row)
+			SEL_WIN.attroff(curses.color_pair(1))
 		else:
-			stdscr.addstr(y, x, row)
-	stdscr.refresh()
+			SEL_WIN.addstr(y, x, row)
+	SEL_WIN.refresh()
 
 ##함수준비:가로로 메뉴를 만드는 함수
-def print_horizontal_menu(stdscr, menu , selected_cul_idx):
+def print_horizontal_menu(SEL_WIN, menu , selected_cul_idx):
 	al = 0
 	ex = 0
-	h, w = stdscr.getmaxyx()
+	h, w = SEL_WIN.getmaxyx()
 
 	for cul in menu:
 		al = al + len(cul)
@@ -42,22 +42,22 @@ def print_horizontal_menu(stdscr, menu , selected_cul_idx):
 		x = w//2 - al + ex 
 		
 		if idx == selected_cul_idx:
-			stdscr.attron(curses.color_pair(1))
-			stdscr.addstr(y, x, row)
-			stdscr.attroff(curses.color_pair(1))
+			SEL_WIN.attron(curses.color_pair(2))
+			SEL_WIN.addstr(y, x, row)
+			SEL_WIN.attroff(curses.color_pair(2))
 		else:
-			stdscr.addstr(y, x, row)
+			SEL_WIN.addstr(y, x, row)
 		al = 0
-	stdscr.refresh()
+	SEL_WIN.refresh()
 
 ##함수준비:정중앙에 원하는 문자를 출력하는 함수
-def print_center(stdscr, text):
+def print_center(SEL_WIN, text):
 	
-	h, w = stdscr.getmaxyx()
+	h, w = SEL_WIN.getmaxyx()
 	x = w//2 - len(text)//2
 	y = h//2
-	stdscr.addstr(y, x, text)
-	stdscr.refresh()
+	SEL_WIN.addstr(y, x, text)
+	SEL_WIN.refresh()
 
 ##함수준비:파일 검색 함수
 def findfile(name, path):
@@ -68,11 +68,14 @@ def findfile(name, path):
 	
 def main(stdscr):
 ##설정준비:미리 자주사용할 자료나 색상들을 설정
+	##설정준비:커서크기
+	curses.curs_set(0)
+
 	##설정준비:색상
 	curses.init_pair(1,curses.COLOR_WHITE,curses.COLOR_BLACK)	 
 	curses.init_pair(2,curses.COLOR_BLACK,curses.COLOR_WHITE)
 	curses.init_pair(3,curses.COLOR_MAGENTA,curses.COLOR_WHITE)
-	   
+   
 	MAIN_COLOR = curses.color_pair(1)
 	MAIN_COLOR_REVERSE = curses.color_pair(2)
 	SELECT_COLOR = curses.color_pair(3)
@@ -132,7 +135,7 @@ def main(stdscr):
 	##커서조작:현재 커서가 있는 위치 및 메뉴 내용을 자료로 저장
 	COSOR = 0
 	MENU_idx= "Main Menu" 
-	MAIN_MENU = ['commuication', 'GPIO' , 'Setting']
+	MAIN_MENU = ['Commuication', 'GPIO' , 'Setting']
 		
 	##커서조작:
 	print_vertical_menu(LEFT_WINDOW, MAIN_MENU, COSOR)
@@ -148,10 +151,11 @@ def main(stdscr):
 			LEFT_WINDOW.clear()
 			print_center(LEFT_WINDOW, f"You selected '{format(MAIN_MENU[COSOR])}'")
 			LEFT_WINDOW.getch()
-		
+
 		LEFT_WINDOW.clear()
-		print_vertical_menu(LEFT_WINDOW, MAIN_MENU, COSOR)
 		rectangle(LEFT_WINDOW,0,0,row-5,15)
+		print_vertical_menu(LEFT_WINDOW, MAIN_MENU, COSOR)
+		
 
 	LEFT_WINDOW.getch()
 
