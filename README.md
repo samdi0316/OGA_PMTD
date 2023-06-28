@@ -9,4 +9,4 @@ So modifing addithonal device to make it easy to attach and release to OGA and m
 
 # MY PLAN
 first i will make OGA as Serial,UART,I2C,SPI monitor by using python
-UI will be made by python curses module cuase i don't know how to make GUI XD
+UI will be made by python curses module cuase i don't know how to make GUI. XD
