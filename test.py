@@ -1,56 +1,65 @@
 import curses
+import time
 
 menu = ['Home', 'Play', 'Scoreboard', 'Exit']
 y_or_n = ['yes', 'no']
 
 
-def print_vertical_menu(stdscr, selected_row_idx):
+def print_vertical_menu(SEL_WIN, menu, selected_row_idx):
 	
-	h, w = stdscr.getmaxyx()
+	h, w = SEL_WIN.getmaxyx()
 	
 	for idx, row in enumerate(menu):
 		x = w//2 - len(row)//2
 		y = h//2 - len(menu)//2 + idx
 		if idx == selected_row_idx:
-			stdscr.attron(curses.color_pair(1))
-			stdscr.addstr(y, x, row)
-			stdscr.attroff(curses.color_pair(1))
+			SEL_WIN.attron(curses.color_pair(1))
+			SEL_WIN.addstr(y, x, row)
+			SEL_WIN.attroff(curses.color_pair(1))
 		else:
-			stdscr.addstr(y, x, row)
-	stdscr.refresh()
+			SEL_WIN.addstr(y, x, row)
+	SEL_WIN.refresh()
 
-def print_horizontal_menu(stdscr, selected_cul_idx):
-	al = 0
-	ex = 0
-	h, w = stdscr.getmaxyx()
+##함수준비:가로로 메뉴를 만드는 함수
+def print_horizontal_menu(SEL_WIN, menu , selected_cul_idx):
+	len_of_menu = 0
+	ex_menu_len = 0
+	h, w = SEL_WIN.getmaxyx()
 
-	for cul in y_or_n:
-		al = al + len(cul)
-		
-	for idx, row in enumerate(y_or_n):
-		for cul in y_or_n:
-			al = al + len(cul)
+	for cul in menu:
+		len_of_menu += len(cul)
+	
+	for idx, row in enumerate(menu):
+		for cul in menu:
+			len_of_menu += len(cul)
 		y = h//2 + 1
-		ex = ex + len(row) +2
-		x = w//2 - al + ex 
+		ex_menu_len = ex_menu_len + len(row) +2
+		x = w//2 - len_of_menu + ex_menu_len 
 		
 		if idx == selected_cul_idx:
-			stdscr.attron(curses.color_pair(1))
-			stdscr.addstr(y, x, row)
-			stdscr.attroff(curses.color_pair(1))
+			SEL_WIN.attron(curses.color_pair(1))
+			SEL_WIN.addstr(y, x, row)
+			SEL_WIN.attroff(curses.color_pair(1))
 		else:
-			stdscr.addstr(y, x, row)
-		al = 0
-	stdscr.refresh()
+			SEL_WIN.addstr(y, x, row)
+		len_of_menu = 0
+	SEL_WIN.refresh()
 
-
-def print_center(stdscr, text):
+##함수준비:정중앙에 원하는 문자를 출력하는 함수
+def print_center(SEL_WIN, text):
 	
-	h, w = stdscr.getmaxyx()
+	h, w = SEL_WIN.getmaxyx()
 	x = w//2 - len(text)//2
 	y = h//2
-	stdscr.addstr(y, x, text)
-	stdscr.refresh()
+	SEL_WIN.addstr(y, x, text)
+	SEL_WIN.refresh()
+
+##함수준비:파일 검색 함수
+def findfile(name, path):
+	for dirpath, dirname, finding_name in os.walk(path):
+		if name in finding_name:
+			return os.path.join(dirpath, name)
+	
 
 def main(stdscr):
 	# turn off cursor blinking
@@ -64,7 +73,7 @@ def main(stdscr):
 	current_cul = 0 
 
 	# print the menu
-	print_vertical_menu(stdscr, current_row)
+	print_vertical_menu(stdscr, menu ,current_row)
 
 	while 1:
 		key = stdscr.getch()
@@ -81,11 +90,12 @@ def main(stdscr):
 			if current_row == len(menu)-1:
 				break
 		stdscr.clear()
-		print_vertical_menu(stdscr, current_row)
+		print_vertical_menu(stdscr, menu , current_row)
 	
 	stdscr.clear()
 	print_center(stdscr,"Are you sure you want to exit?")
-	print_horizontal_menu(stdscr,current_cul)
+	print_horizontal_menu(stdscr,y_or_n , current_cul)
+
 
 	while 1:
 		key = stdscr.getch()
@@ -101,8 +111,10 @@ def main(stdscr):
 			# if user selected last row, exit the program
 			if current_cul == 0:
 				break
-
+		
+		
 		print_center(stdscr,"Are you sure you want to exit?")
-		print_horizontal_menu(stdscr, current_cul)
+		print_horizontal_menu(stdscr, y_or_n , current_cul)
+
 
 curses.wrapper(main)
