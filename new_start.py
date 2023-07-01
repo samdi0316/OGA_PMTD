@@ -4,6 +4,7 @@ import os
 import os.path
 import time
 import getpass
+import sys
 
 ##자료준비
 ##자료준비:로고 큰거
@@ -128,55 +129,57 @@ def main(stdscr):
 	stdscr.refresh()
 
 	##시작할지 말지를 선택하는 메뉴를 작동
+	selected_column = 0
+	turnoff_menu_select = 0
+
 	while True:
 		key = stdscr.getch()
-		selected_column = 0
-		turnoff_menu_select = 0
-
 		if key == curses.KEY_LEFT and selected_column > 0:
-			selected_column  -= 1
-		elif key == curses.KEY_RIGHT and selected_column < len(y_or_n)-1:
-			selected_column += 1
-		elif key == curses.KEY_ENTER or key in [10, 13]:
-			##Yes를 선택할 경우 MAIN_MENU를 실행
+			selected_column = 0
+		elif key == curses.KEY_RIGHT and selected_column < 1:
+			selected_column = 1
+		elif key == curses.KEY_ENTER:
+			 ##Yes를 선택할 경우 MAIN_MENU를 실행
 			if selected_column == 0:
 				os.system("python MAIN_MENU.py")
 				break
-			##No를 선택할 경우 다시 한번 물어보기
-			if selected_column == 1:
+			 ##No를 선택하는 경우 다시한번 물어보기
+			elif selected_column == 1:
 				stdscr.clear()
 				stdscr.addstr(half_hight, half_width, "Do you want to turn off the device?")
-				menu_horizontal(stdscr, ['Turn off', 'No'], half_hight-1, half_width)
-				
+				menu_horizontal(stdscr, ['Turn off', 'No'], 0,half_hight-1, half_width)
+				stdscr.refresh()
 				while True:
-					key = stdscr.getch()
-					
+					key = stdscr.getch()				
 					if key == curses.KEY_LEFT and turnoff_menu_select > 0:
-						turnoff_menu_select  -= 1
-					elif key == curses.KEY_RIGHT and turnoff_menu_select < len(y_or_n)-1:
-						turnoff_menu_select += 1
+						turnoff_menu_select = 0
+					elif key == curses.KEY_RIGHT and turnoff_menu_select < 1:
+						turnoff_menu_select = 1
 					elif key == curses.KEY_ENTER or key in [10, 13]:
-						##Turn off를 선택한 경우 시스템을 종료
+						 ##Turn off를 선택한 경우 시스템을 종료
 						if turnoff_menu_select == 0:
 							stdscr.clear()
 							os.system("sudo shutdown now")
-							exit()
-						##No를 선택한 경우에는 다시 작동할지말지 선택하는 메뉴로 복귀
+							sys.exit()
+						 ##No를 선택한 경우에는 다시 작동할지말지 선택하는 메뉴로 복귀
 						elif turnoff_menu_select == 1:
+							turnoff_menu_select = 0
 							break
+					stdscr.clear()
+					stdscr.addstr(half_hight, half_width, "Do you want to turn off the device?")
+					menu_horizontal(stdscr, ['Turn off', 'No'], 0,half_hight-1, half_width)
+					stdscr.refresh()
+		if turnoff_menu_select == 1:
+						stdscr.clear()
+						break  
 
-				if turnoff_menu_select == 1:
-					break
+		stdscr.clear()
+		drew_ASCIIart(stdscr, logo_big, half_hight, half_width - len(logo_big[0]))
+		menu_vertical_1(stdscr, start_screen_info, 99, half_hight, half_width + len(start_screen_info[0])//2)
+		menu_horizontal(stdscr, y_or_n, selected_column, half_hight + len(logo_big)//2 + 3 , half_width)
+		stdscr.addstr(half_hight + len(logo_big)//2 + 1, half_width - 21, "Do you want to start OGA_PMTE?")
+		stdscr.refresh()
 		
-	stdscr.clear()
-	drew_ASCIIart(stdscr, logo_big, half_hight, half_width - len(logo_big[0]))
-	menu_vertical_1(stdscr, start_screen_info, 99, half_hight, half_width + len(start_screen_info[0])//2)
-	menu_horizontal(stdscr, y_or_n, 0, half_hight + len(logo_big)//2 + 3 , half_width)
-	stdscr.addstr(half_hight + len(logo_big)//2 + 1, half_width - 21, "Do you want to start OGA_PMTE?")
-	stdscr.refresh()
-
 			
-
-	stdscr.getch()
 
 curses.wrapper(main)
