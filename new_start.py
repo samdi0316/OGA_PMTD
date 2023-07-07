@@ -8,16 +8,17 @@ import sys
 
 ##자료준비
 ##자료준비:로고 큰거
-logo_big = ['⠀⠀⠀⠀⠀⠀⢀⡠⠔⠊⡟⠲⢤⣀⠀⠀⠀⠀⠀⠀⠀',
-           '⠀⠀⢀⣠⣄⣀⢸⠀⠀⠀⡇⠀⠀⢸⠀⣀⣄⣀⠀⠀⠀',
-		   '⡴⠚⠁⢸⣿⣿⣿⠀⠀⠀⡇⠀⠀⢸⡿⠋⠀⠈⠙⣢⠄',
-		   '⡇⠀⠀⢸⡿⠟⠋⠀⠀⠀⡇⠀⠀⠈⠀⠀⠀⢀⡼⠁⠀',
-		   '⡇⠀⠀⠈⠀⠀⣀⠀⠀⠀⡇⠀⠀⢰⠀⠀⠠⡎⠀⠀⠀',
-		   '⡇⠀⠀⢠⣶⣿⣿⠀⠀⠀⡇⠀⠀⢸⣧⠀⠀⢳⡀⠀⠀',
-		   '⡇⠀⠀⢸⣿⣿⣿⣀⠤⠖⠓⠦⣀⣸⣿⣆⠀⠀⢳⠀⠀',
-		   '⡇⠀⠀⢸⣿⣿⣿⣤⣀⠀⠀⢀⣤⣿⣿⣿⣆⠀⠀⢧⠀',
-		   '⡧⠔⠋⠁⠈⠛⠻⣿⠀⠉⠋⠀⢻⣿⠿⠋⠁⠉⠓⠬⣇',
-		   '⠉⠐⠦⣀⡠⠔⠊⠁⠀⠀⠀⠀⠀⠉⠒⠦⣄⡠⠔⠊⠉']
+logo_big = [
+'⠀⠀⠀⠀⠀⠀⢀⡠⠔⠊⡟⠲⢤⣀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⢀⣠⣄⣀⢸⠀⠀⠀⡇⠀⠀⢸⠀⣀⣄⣀⠀⠀⠀',
+'⡴⠚⠁⢸⣿⣿⣿⠀⠀⠀⡇⠀⠀⢸⡿⠋⠀⠈⠙⣢⠄',
+'⡇⠀⠀⢸⡿⠟⠋⠀⠀⠀⡇⠀⠀⠈⠀⠀⠀⢀⡼⠁⠀',
+'⡇⠀⠀⠈⠀⠀⣀⠀⠀⠀⡇⠀⠀⢰⠀⠀⠠⡎⠀⠀⠀',
+'⡇⠀⠀⢠⣶⣿⣿⠀⠀⠀⡇⠀⠀⢸⣧⠀⠀⢳⡀⠀⠀',
+'⡇⠀⠀⢸⣿⣿⣿⣀⠤⠖⠓⠦⣀⣸⣿⣆⠀⠀⢳⠀⠀',
+'⡇⠀⠀⢸⣿⣿⣿⣤⣀⠀⠀⢀⣤⣿⣿⣿⣆⠀⠀⢧⠀',
+'⡧⠔⠋⠁⠈⠛⠻⣿⠀⠉⠋⠀⢻⣿⠿⠋⠁⠉⠓⠬⣇',
+'⠉⠐⠦⣀⡠⠔⠊⠁⠀⠀⠀⠀⠀⠉⠒⠦⣄⡠⠔⠊⠉']
 
 ##자료준비:시작화면 메뉴
 start_screen_menu = ['','Turn off']
@@ -86,7 +87,7 @@ def menu_horizontal(selected_window, menu_item, selected_column, middle_hight, m
 
 	for item in menu_item:
 		
-		item_x -= len(item)+2
+		item_x -= (len(item)+2)//2
 
 	for index, item in enumerate(menu_item):
 		item_y = middle_hight
@@ -122,10 +123,10 @@ def main(stdscr):
 
 	##화면에 먼저 로고를 그리고 메뉴를 로고 우측에 생성, 아래에 선택화면 그리기
 	stdscr.clear()
-	drew_ASCIIart(stdscr, logo_big, half_hight, half_width - len(logo_big[0]))
-	menu_vertical_1(stdscr, start_screen_info, 99, half_hight, half_width + len(start_screen_info[0])//2)
+	drew_ASCIIart(stdscr, logo_big, half_hight, half_width - len(logo_big[0])//2-5)
+	menu_vertical_1(stdscr, start_screen_info, 99, half_hight, half_width + len(start_screen_info[0])//2+5)
 	menu_horizontal(stdscr, y_or_n, 0, half_hight + len(logo_big)//2 + 3 , half_width)
-	stdscr.addstr(half_hight + len(logo_big)//2 + 1, half_width - 21, "Do you want to start OGA_PMTE?")
+	stdscr.addstr(half_hight + len(logo_big)//2 + 1, half_width - len("Do you want to start OGA_PMTE?")//2, "Do you want to start OGA_PMTE?")
 	stdscr.refresh()
 
 	##시작할지 말지를 선택하는 메뉴를 작동
@@ -138,7 +139,7 @@ def main(stdscr):
 			selected_column = 0
 		elif key == curses.KEY_RIGHT and selected_column < 1:
 			selected_column = 1
-		elif key == curses.KEY_ENTER:
+		elif key == curses.KEY_ENTER or key in [10, 13]:
 			 ##Yes를 선택할 경우 MAIN_MENU를 실행
 			if selected_column == 0:
 				os.system("python MAIN_MENU.py")
@@ -146,8 +147,8 @@ def main(stdscr):
 			 ##No를 선택하는 경우 다시한번 물어보기
 			elif selected_column == 1:
 				stdscr.clear()
-				stdscr.addstr(half_hight, half_width, "Do you want to turn off the device?")
-				menu_horizontal(stdscr, ['Turn off', 'No'], 0,half_hight-1, half_width)
+				stdscr.addstr(half_hight-1, half_width-len("Do you want to turn off the device?")//2, "Do you want to turn off the device?")
+				menu_horizontal(stdscr, ['Turn off', 'No'], turnoff_menu_select,half_hight+1, half_width)
 				stdscr.refresh()
 				while True:
 					key = stdscr.getch()				
@@ -166,19 +167,23 @@ def main(stdscr):
 							turnoff_menu_select = 0
 							break
 					stdscr.clear()
-					stdscr.addstr(half_hight, half_width, "Do you want to turn off the device?")
-					menu_horizontal(stdscr, ['Turn off', 'No'], 0,half_hight-1, half_width)
+					stdscr.addstr(half_hight-1, half_width-len("Do you want to turn off the device?")//2, "Do you want to turn off the device?")
+					menu_horizontal(stdscr, ['Turn off', 'No'], turnoff_menu_select,half_hight+1, half_width)
 					stdscr.refresh()
-		if turnoff_menu_select == 1:
-						stdscr.clear()
-						break  
-
+			if turnoff_menu_select == 1:
+				stdscr.clear()
+				break  
+		
 		stdscr.clear()
-		drew_ASCIIart(stdscr, logo_big, half_hight, half_width - len(logo_big[0]))
-		menu_vertical_1(stdscr, start_screen_info, 99, half_hight, half_width + len(start_screen_info[0])//2)
+		drew_ASCIIart(stdscr, logo_big, half_hight, half_width - len(logo_big[0])//2-5)
+		menu_vertical_1(stdscr, start_screen_info, 99, half_hight, half_width + len(start_screen_info[0])//2+5)
 		menu_horizontal(stdscr, y_or_n, selected_column, half_hight + len(logo_big)//2 + 3 , half_width)
-		stdscr.addstr(half_hight + len(logo_big)//2 + 1, half_width - 21, "Do you want to start OGA_PMTE?")
+		stdscr.addstr(half_hight + len(logo_big)//2 + 1, half_width - len("Do you want to start OGA_PMTE?")//2, "Do you want to start OGA_PMTE?")
 		stdscr.refresh()
+
+	stdscr.clear()
+	stdscr.refresh()
+	time.sleep(3)
 		
 			
 
