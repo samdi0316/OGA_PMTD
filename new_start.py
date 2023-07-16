@@ -9,16 +9,33 @@ import sys
 ##자료준비
 ##자료준비:로고 큰거
 logo_big = [
-'⠀⠀⠀⠀⠀⠀⢀⡠⠔⠊⡟⠲⢤⣀⠀⠀⠀⠀⠀⠀⠀',
-'⠀⠀⢀⣠⣄⣀⢸⠀⠀⠀⡇⠀⠀⢸⠀⣀⣄⣀⠀⠀⠀',
-'⡴⠚⠁⢸⣿⣿⣿⠀⠀⠀⡇⠀⠀⢸⡿⠋⠀⠈⠙⣢⠄',
-'⡇⠀⠀⢸⡿⠟⠋⠀⠀⠀⡇⠀⠀⠈⠀⠀⠀⢀⡼⠁⠀',
-'⡇⠀⠀⠈⠀⠀⣀⠀⠀⠀⡇⠀⠀⢰⠀⠀⠠⡎⠀⠀⠀',
-'⡇⠀⠀⢠⣶⣿⣿⠀⠀⠀⡇⠀⠀⢸⣧⠀⠀⢳⡀⠀⠀',
-'⡇⠀⠀⢸⣿⣿⣿⣀⠤⠖⠓⠦⣀⣸⣿⣆⠀⠀⢳⠀⠀',
-'⡇⠀⠀⢸⣿⣿⣿⣤⣀⠀⠀⢀⣤⣿⣿⣿⣆⠀⠀⢧⠀',
-'⡧⠔⠋⠁⠈⠛⠻⣿⠀⠉⠋⠀⢻⣿⠿⠋⠁⠉⠓⠬⣇',
-'⠉⠐⠦⣀⡠⠔⠊⠁⠀⠀⠀⠀⠀⠉⠒⠦⣄⡠⠔⠊⠉']
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠤⠴⠶⠲⠦⠤⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠖⠉⠀⠀⠀⠀⠀⠀⢀⣀⡁⠤⠀⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠜⠁⠀⠀⢀⣀⠤⠔⠒⠊⠉⠁⠀⠀⠀⢀⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣮⠤⠔⠚⢫⢠⢢⠀⠀⠀⢀⣠⠤⠐⠚⠉⠁⠢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡁⢀⢁⢃⢃⣃⠦⠤⠒⠚⠉⠀⠀⠀⠀⠀⠀⠀⠀⠷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠳⡴⠚⠉⠉⠀⡄⠀⠀⣠⠖⠋⠒⠀⠀⠀⠀⢀⣀⡀⠙⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠁⠀⠀⠀⠀⡇⠀⠀⡏⠀⢰⣷⡆⠀⠀⠀⠸⣿⣿⠀⣳⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠓⣒⡲⣦⣥⣤⣀⡃⣀⣸⣿⡧⠤⠴⡶⠖⣿⠛⢛⣿⠁⠀⣸⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡄⠀⠀⠀⠀⠀⠀⠈⢹⡅⠈⢉⣿⣧⣤⠟⣬⢿⠒⠚⣫⡋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⡀⢠⡀⠀⠀⠀⠀⠀⠉⠉⠻⡿⠀⠀⠀⡟⠧⠆⠀⠀⢹⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠑⠒⢲⠢⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠞⠀⠀⢸⣿⠀⠀⠀⠀⠀⢀⡀⣀⠀⠀⡎⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡄⠀⠀⣿⣿⣤⣤⣤⣧⣽⣼⡷⠛⠒⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠜⠑⢄⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠢⣀⠈⠛⠿⢿⣿⡿⡿⠿⠃⢳⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠄⠀⠂⢤⠮⣄⡀⠀⠉⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠉⠒⠲⠤⠤⠤⠤⠤⠖⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢱⠭⢒⣲⡬⠤⠤⢼⡆⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡠⢴⡦⠊⢻⣍⠒⠤⠤⠲⢦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣸⣀⠀⠀⠉⠉⠉⡍⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠤⠚⠉⠁⢠⣊⡀⠀⢀⢫⠑⠒⠒⠂⠉⡠⠊⠑⡆⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⢊⣩⢾⠈⠉⠐⠒⠒⢺⠁⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡴⠋⠀⠀⠀⠀⠀⠀⠀⠈⢩⠋⠀⣇⠀⠀⣠⠎⣇⡀⠀⠘⡀⠀⠑⠤⡀⠀⠀⠀⠀⠀⠀⡏⣎⣕⠒⣾⢷⢉⡽⠤⢤⠇⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢧⡀⠀⠘⣄⠔⠁⠀⢰⠀⠈⠉⠉⠀⠀⠀⠙⡄⠀⠀⠀⠀⢸⢚⢌⡲⠀⢿⡙⠀⠤⢄⡜⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠲⣀⢻⣀⠠⠔⠚⠁⠀⠀⠀⠀⠀⠀⠀⠘⡀⠀⠀⠀⠸⢸⠀⠀⠀⠀⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⢰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⠀⠀⠀⢐⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⢠⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢣⠀⠀⢸⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡔⠊⠀⠀⢸⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠒⠲⡉⠢⡀⠀⢀⠠⠂⢨⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠱⣄⠈⠱⢴⠒⠢⡈⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⣀⠜⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+]
 
 ##자료준비:시작화면 메뉴
 start_screen_menu = ['','Turn off']
@@ -124,9 +141,9 @@ def main(stdscr):
 	##화면에 먼저 로고를 그리고 메뉴를 로고 우측에 생성, 아래에 선택화면 그리기
 	stdscr.clear()
 	drew_ASCIIart(stdscr, logo_big, half_hight, half_width - len(logo_big[0])//2-5)
-	menu_vertical_1(stdscr, start_screen_info, 99, half_hight, half_width + len(start_screen_info[0])//2+5)
-	menu_horizontal(stdscr, y_or_n, 0, half_hight + len(logo_big)//2 + 3 , half_width)
-	stdscr.addstr(half_hight + len(logo_big)//2 + 1, half_width - len("Do you want to start OGA_PMTE?")//2, "Do you want to start OGA_PMTE?")
+	menu_vertical_1(stdscr, start_screen_info, 99, half_hight-3, half_width + len(start_screen_info[0])//2+5)
+	menu_horizontal(stdscr, y_or_n, 0, half_hight+7, half_width+ len(start_screen_info[0])//2+5)
+	stdscr.addstr(half_hight +5, half_width + len(start_screen_info[0])//2 +5 -len("Do you want to start OGA_PMTE?")//2, "Do you want to start OGA_PMTE?")
 	stdscr.refresh()
 
 	##시작할지 말지를 선택하는 메뉴를 작동
@@ -176,9 +193,9 @@ def main(stdscr):
 		
 		stdscr.clear()
 		drew_ASCIIart(stdscr, logo_big, half_hight, half_width - len(logo_big[0])//2-5)
-		menu_vertical_1(stdscr, start_screen_info, 99, half_hight, half_width + len(start_screen_info[0])//2+5)
-		menu_horizontal(stdscr, y_or_n, selected_column, half_hight + len(logo_big)//2 + 3 , half_width)
-		stdscr.addstr(half_hight + len(logo_big)//2 + 1, half_width - len("Do you want to start OGA_PMTE?")//2, "Do you want to start OGA_PMTE?")
+		menu_vertical_1(stdscr, start_screen_info, 99, half_hight-3, half_width + len(start_screen_info[0])//2+5)
+		menu_horizontal(stdscr, y_or_n, selected_column, half_hight+7, half_width+ len(start_screen_info[0])//2+5)
+		stdscr.addstr(half_hight +5, half_width + len(start_screen_info[0])//2 +5 -len("Do you want to start OGA_PMTE?")//2, "Do you want to start OGA_PMTE?")
 		stdscr.refresh()
 
 	stdscr.clear()
