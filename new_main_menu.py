@@ -7,8 +7,38 @@ import getpass
 import sys
 
 ##자료준비
-##자료준비: 메인 메뉴
-Main_menu = []
+##자료준비:메인 메뉴
+Main_menu = ['Commuication', 'GPIO' , 'Setting']
+
+##자료준비:해골juice
+juice = [
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠤⠴⠶⠲⠦⠤⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠖⠉⠀⠀⠀⠀⠀⠀⢀⣀⡁⠤⠀⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠜⠁⠀⠀⢀⣀⠤⠔⠒⠊⠉⠁⠀⠀⠀⢀⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣮⠤⠔⠚⢫⢠⢢⠀⠀⠀⢀⣠⠤⠐⠚⠉⠁⠢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡁⢀⢁⢃⢃⣃⠦⠤⠒⠚⠉⠀⠀⠀⠀⠀⠀⠀⠀⠷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠳⡴⠚⠉⠉⠀⡄⠀⠀⣠⠖⠋⠒⠀⠀⠀⠀⢀⣀⡀⠙⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠁⠀⠀⠀⠀⡇⠀⠀⡏⠀⢰⣷⡆⠀⠀⠀⠸⣿⣿⠀⣳⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠓⣒⡲⣦⣥⣤⣀⡃⣀⣸⣿⡧⠤⠴⡶⠖⣿⠛⢛⣿⠁⠀⣸⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡄⠀⠀⠀⠀⠀⠀⠈⢹⡅⠈⢉⣿⣧⣤⠟⣬⢿⠒⠚⣫⡋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⡀⢠⡀⠀⠀⠀⠀⠀⠉⠉⠻⡿⠀⠀⠀⡟⠧⠆⠀⠀⢹⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠑⠒⢲⠢⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠞⠀⠀⢸⣿⠀⠀⠀⠀⠀⢀⡀⣀⠀⠀⡎⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡄⠀⠀⣿⣿⣤⣤⣤⣧⣽⣼⡷⠛⠒⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠜⠑⢄⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠢⣀⠈⠛⠿⢿⣿⡿⡿⠿⠃⢳⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠄⠀⠂⢤⠮⣄⡀⠀⠉⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠉⠒⠲⠤⠤⠤⠤⠤⠖⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢱⠭⢒⣲⡬⠤⠤⢼⡆⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡠⢴⡦⠊⢻⣍⠒⠤⠤⠲⢦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣸⣀⠀⠀⠉⠉⠉⡍⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠤⠚⠉⠁⢠⣊⡀⠀⢀⢫⠑⠒⠒⠂⠉⡠⠊⠑⡆⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⢊⣩⢾⠈⠉⠐⠒⠒⢺⠁⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡴⠋⠀⠀⠀⠀⠀⠀⠀⠈⢩⠋⠀⣇⠀⠀⣠⠎⣇⡀⠀⠘⡀⠀⠑⠤⡀⠀⠀⠀⠀⠀⠀⡏⣎⣕⠒⣾⢷⢉⡽⠤⢤⠇⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢧⡀⠀⠘⣄⠔⠁⠀⢰⠀⠈⠉⠉⠀⠀⠀⠙⡄⠀⠀⠀⠀⢸⢚⢌⡲⠀⢿⡙⠀⠤⢄⡜⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠲⣀⢻⣀⠠⠔⠚⠁⠀⠀⠀⠀⠀⠀⠀⠘⡀⠀⠀⠀⠸⢸⠀⠀⠀⠀⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⢰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⠀⠀⠀⢐⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⢠⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢣⠀⠀⢸⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡔⠊⠀⠀⢸⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠒⠲⡉⠢⡀⠀⢀⠠⠂⢨⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠱⣄⠈⠱⢴⠒⠢⡈⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+'⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⣀⠜⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+]
 
 ##자료준비:시스템 정보
 USER = getpass.getuser()
@@ -107,9 +137,55 @@ def main(stdscr):
 	max_hight, max_width = maxyx(stdscr)
 	
 	top_screen_hight , top_screen_width = 0, max_width
-	bot_screen_hight , bot_screen_width = max_hight-1, max_width
+	bot_screen_hight , bot_screen_width = max_hight-2, max_width
+	left_screen_hight, left_screen_width = max_hight-3, 20
+	right_screen_hight, right_screen_width = max_hight-3, max_width 
+	
+	##맨 위 화면은 [사용자						날짜] 형식으로 표시
+	stdscr.clear()
+	stdscr.addstr(top_screen_hight, 0, DATE.rjust(top_screen_width," "), MAIN_COLOR_REVERSE)
+	stdscr.addstr(top_screen_hight, 0, USER,MAIN_COLOR_REVERSE)
+	
+	##맨 밑 화면 첫번째 줄은 D-PAD를 이용하라는 문구, 두번째 줄은 특수 버튼 지정(현재는 가장 우측것만 종료)
+	stdscr.addstr(bot_screen_hight, 0, "Use D-PAD and A button to select menu".center(bot_screen_width-1, ' '), MAIN_COLOR_REVERSE)
+	stdscr.addstr(bot_screen_hight+1, 0, "SHUT DOWN  ".rjust(bot_screen_width-1, ' '))
+	
+	##중앙 좌측화면과 우측화면을 나누는 선 그리기
+	for i in range(top_screen_hight+3, bot_screen_hight-3):
+		stdscr.addstr(i, left_screen_width,"│")
 
+	##화면 중앙 좌측은 메인메뉴 표시
+	selected_left_manu = 0
+	menu_vertical_1(stdscr, Main_menu, selected_left_manu, left_screen_hight//2, left_screen_width//2 )
+
+	##화면 우측은 그냥 해골 하나
+
+
+	stdscr.refresh()
+
+	##메인 메뉴 선택 작동
+	selected_main_manu = 99
+	while True:
+		key = stdscr.getch()
+		if key == curses.KEY_UP and selected_left_manu > 0:
+			selected_left_manu -= 1
+		elif key == curses.KEY_DOWN and selected_left_manu < len(Main_menu)-1 :
+			selected_left_manu += 1
+		elif key == curses.KEY_ENTER or key in [10, 13]:	
+			selected_left_manu = selected_main_manu
+			break
+
+		menu_vertical_1(stdscr, Main_menu, selected_left_manu, left_screen_hight//2, left_screen_width//2 )
+		stdscr.refresh()
+
+	time.sleep(5)
+
+	##선택한 메인 메뉴에 맞추어서 세부 메뉴 표시
 	
-	
+##	while True:
+##		key = stdscr.getch()
+##		if key == curses.KEY_LEFT and 
 
 curses.wrapper(main)
+##│┐┌ ─ ┘└
+	
