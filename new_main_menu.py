@@ -159,7 +159,7 @@ def main(stdscr):
 	menu_vertical_1(stdscr, Main_menu, selected_left_manu, left_screen_hight//2, left_screen_width//2 )
 
 	##화면 우측은 그냥 해골 하나
-
+	drew_ASCIIart(stdscr, juice, (right_screen_hight-top_screen_hight)//2 +top_screen_hight, (right_screen_width -left_screen_width)//2 +left_screen_width)
 
 	stdscr.refresh()
 
