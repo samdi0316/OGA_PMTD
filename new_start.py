@@ -159,7 +159,7 @@ def main(stdscr):
 		elif key == curses.KEY_ENTER or key in [10, 13]:
 			 ##Yes를 선택할 경우 MAIN_MENU를 실행
 			if selected_column == 0:
-				os.system("python MAIN_MENU.py")
+				os.system("python new_main_menu.py")
 				break
 			 ##No를 선택하는 경우 다시한번 물어보기
 			elif selected_column == 1:
