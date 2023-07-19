@@ -8,7 +8,20 @@ import sys
 
 ##자료준비
 ##자료준비:메인 메뉴
-Main_menu = ['Commuication', 'GPIO' , 'Setting']
+Main_menu = ['Module','Commuication', 'GPIO_MENU' , 'Setting']
+
+##자료준비:모듈 메뉴
+Module = ['WORKING' : ':(']
+
+##자료준비:Coummication 세부 메뉴
+Coummuincation = ['I2C' : 'Use pin#7 (GPIO0_C2) as SCL and pin#8 (GPIO0_C3) as SDA to coummuicate with I2C device.',
+'UART' : 'Use UART port at the right side of the device to coummuicate with UART',
+'WIFI' : 'If you are using OGA_Revision_1.1 config WIFI here']
+
+##자료준비:GPIO 세부 메뉴
+ 
+
+##자료준비:Setting 세부 메뉴
 
 ##자료준비:해골juice
 juice = [
@@ -158,7 +171,7 @@ def main(stdscr):
 	selected_left_manu = 0
 	menu_vertical_1(stdscr, Main_menu, selected_left_manu, left_screen_hight//2, left_screen_width//2 )
 
-	##화면 우측은 그냥 해골 하나
+	##화면 우측은 세부메뉴에 따라서 다르게 표시 
 	drew_ASCIIart(stdscr, juice, (right_screen_hight-top_screen_hight)//2 +top_screen_hight, (right_screen_width -left_screen_width)//2 +left_screen_width)
 
 	stdscr.refresh()
@@ -178,13 +191,13 @@ def main(stdscr):
 		menu_vertical_1(stdscr, Main_menu, selected_left_manu, left_screen_hight//2, left_screen_width//2 )
 		stdscr.refresh()
 
-	time.sleep(5)
-
+	
 	##선택한 메인 메뉴에 맞추어서 세부 메뉴 표시
 	
-##	while True:
-##		key = stdscr.getch()
-##		if key == curses.KEY_LEFT and 
+##	if Main_menu[selected_main_manu] == 'Coummuication':
+		
+
+	
 
 curses.wrapper(main)
 ##│┐┌ ─ ┘└
