@@ -7,21 +7,24 @@ import getpass
 import sys
 
 ##자료준비
-##자료준비:메인 메뉴
-Main_menu = ['Module','Commuication', 'GPIO_MENU' , 'Setting']
-
-##자료준비:모듈 메뉴
-Module = ['WORKING' : ':(']
-
-##자료준비:Coummication 세부 메뉴
-Coummuincation = ['I2C' : 'Use pin#7 (GPIO0_C2) as SCL and pin#8 (GPIO0_C3) as SDA to coummuicate with I2C device.',
-'UART' : 'Use UART port at the right side of the device to coummuicate with UART',
-'WIFI' : 'If you are using OGA_Revision_1.1 config WIFI here']
-
-##자료준비:GPIO 세부 메뉴
- 
-
-##자료준비:Setting 세부 메뉴
+##자료준비:전체메뉴
+Main_menu = {
+	'Module' : {'WORKING':':('} , 
+	'Commuication' : {
+		'I2C' : 'Use pin#7 (GPIO0_C2) as SCL and pin#8 (GPIO0_C3) as SDA to coummuicate with I2C device.',
+		'UART' : 'Use UART port at the right side of the device to coummuicate with UART',
+		'WIFI' : 'If you are using OGA_Revision_1.1 config WIFI here'
+		},
+	'GPIO_MENU' : {
+		'INPUT_setting' : 'Show input on GPIO pin',
+		'OUTPUT_setting' : 'Set GPIO to make output signal',
+		'PIN_MAP' : 'Show OGA GPIO pinmap'
+		},
+	'Setting' : {
+		'time_setting' : 'Set time and date',
+		'Device_setting' : 'Set power and screen and more...',
+		'System_setting' : 'Set OGA_PMTE basic setting'}
+}
 
 ##자료준비:해골juice
 juice = [
@@ -85,7 +88,7 @@ curses.curs_set(0)
 ##그리기함수
 ##그리기함수:세로로 메뉴를 나열
 def menu_vertical(selected_window, menu_item, selected_row, middle_hight, middle_width):
-	for index, item in enumerate(menu_item):
+	for index, item in enumerate(menu_item.key()):
 		item_x = middle_width - len(item)//2
 		item_y = middle_hight - len(menu_item)//2 + index
 	
@@ -107,6 +110,17 @@ def menu_vertical_1(selected_window, menu_item, selected_row, middle_hight, midd
 			selected_window.addstr(item_y, item_x, item)
 	selected_window.refresh()
 
+##그리기함수:세로로 메뉴를 나열(딕셔너리 사용)
+def menu_vertical_dic(selected_window, menu_item, selected_row, middle_hight, middle_width):
+	for index, (key, item) in enumerate(Main_menu.items[menu_item]):
+		item_x = middle_width - len(item)//2
+		item_y = middle_hight - len(menu_item) + index * 2
+	
+		if index == selected_row:
+			selected_window.addstr(item_y, item_x, item, SELECT_COLOR)
+		else:
+			selected_window.addstr(item_y, item_x, item)
+	selected_window.refresh()
 
 ##그리기함수:가로로 메뉴를 나열
 def menu_horizontal(selected_window, menu_item, selected_column, middle_hight, middle_width):
@@ -168,8 +182,8 @@ def main(stdscr):
 		stdscr.addstr(i, left_screen_width,"│")
 
 	##화면 중앙 좌측은 메인메뉴 표시
-	selected_left_manu = 0
-	menu_vertical_1(stdscr, Main_menu, selected_left_manu, left_screen_hight//2, left_screen_width//2 )
+	selected_left_menu = 0
+	menu_vertical_1(stdscr, Main_menu, selected_left_menu, left_screen_hight//2, left_screen_width//2 )
 
 	##화면 우측은 세부메뉴에 따라서 다르게 표시 
 	drew_ASCIIart(stdscr, juice, (right_screen_hight-top_screen_hight)//2 +top_screen_hight, (right_screen_width -left_screen_width)//2 +left_screen_width)
@@ -177,24 +191,35 @@ def main(stdscr):
 	stdscr.refresh()
 
 	##메인 메뉴 선택 작동
-	selected_main_manu = 99
+	selected_main_menu = 99
 	while True:
 		key = stdscr.getch()
-		if key == curses.KEY_UP and selected_left_manu > 0:
-			selected_left_manu -= 1
-		elif key == curses.KEY_DOWN and selected_left_manu < len(Main_menu)-1 :
-			selected_left_manu += 1
+		if key == curses.KEY_UP and selected_left_menu > 0:
+			selected_left_menu -= 1
+		elif key == curses.KEY_DOWN and selected_left_menu < len(Main_menu)-1 :
+			selected_left_menu += 1
 		elif key == curses.KEY_ENTER or key in [10, 13]:	
-			selected_left_manu = selected_main_manu
+			selected_left_menu = selected_main_menu
 			break
 
-		menu_vertical_1(stdscr, Main_menu, selected_left_manu, left_screen_hight//2, left_screen_width//2 )
+		menu_vertical_1(stdscr, Main_menu, selected_left_menu, left_screen_hight//2, left_screen_width//2 )
 		stdscr.refresh()
 
 	
 	##선택한 메인 메뉴에 맞추어서 세부 메뉴 표시
-	
-##	if Main_menu[selected_main_manu] == 'Coummuication':
+	right_cursor = 0
+
+	while Ture:
+		key = stdscr.getch()
+		if key == curses.KEY_UP and right_cursor > 0:
+			right_cursor -= 1
+		elif key == curses.KEY_DOWN and right_cursor < len(Main_menu)-1 :
+			right_cursor += 1
+		elif key == curses.KEY_ENTER or key in [10, 13]:	
+			selected_sub_menu = [right_cursor, selected_main_menu]
+			break
+			
+		menu_vertical_dic()
 		
 
 	
