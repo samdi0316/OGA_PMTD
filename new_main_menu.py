@@ -247,11 +247,14 @@ def main(stdscr):
 		key = stdscr.getch()
 		if key == curses.KEY_UP and selected_left_menu > 0:
 			selected_left_menu -= 1
-		elif key == curses.KEY_DOWN and selected_left_menu < len(Main_menu)-1 :
+		elif key == curses.KEY_DOWN and selected_left_menu < len(Main_menu[selected_main_menu])-1 :
 			selected_left_menu += 1
 		elif key == curses.KEY_ENTER or key in [10, 13]:
-			break
-		
+			##선택한 세부 메뉴에 따른 프로그램 실행
+			selected_sub_menu = Main_menu[selected_main_menu][selected_left_menu]
+			os.system(f"python {selected_sub_menu}.py")
+			sys.exit()
+					
 		menu_vertical_1(stdscr, Main_menu[selected_main_menu], selected_left_menu, left_screen_hight//2 +1, left_screen_width//2 )
 		for i in range(left_screen_width+1,right_screen_width):
 			stdscr.addstr((right_screen_hight -top_screen_hight)//2 +top_screen_hight,i," ")
